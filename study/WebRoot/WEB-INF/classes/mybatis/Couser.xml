@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.nuc.study.dao.interfaces.CouserMapper" >
+  
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.study.entity.Couser" >
+    <id column="CID" property="cid" jdbcType="INTEGER" />
+    <result column="TID" property="tid" jdbcType="INTEGER" />
+    <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+    <result column="CTYPE" property="ctype" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    CID, TID, CNAME, CTYPE
+  </sql>
+  
+  <select id="listPageCouser" resultMap="couserResultMap">
+		select * from tb_couser where cid is null
+  </select>
+  <select id="listAllCouser" resultMap="couserResultMap">
+		select * from tb_couser where cid is null
+  </select>
+  <select id="getCouserById" parameterType="int" resultMap="couserResultMap">
+		select * from tb_couser where cid=#{cmenuId}
+  </select>
+  <select id="getCountByName" parameterType="Couser" resultType="int">
+		select count(cid) from tb_couser where cname=#{cname}
+  </select>
+  <insert id="insertCouser" parameterType="COuser" useGeneratedKeys="true" keyProperty="cId">
+	insert into tb_course (CID, TID, CNAME, 
+      CTYPE)
+    values (#{cid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, 
+      #{ctype,jdbcType=VARCHAR})
+  </insert> 
+  <update id="updateCouser" parameterType="Couser">
+		update tb_course
+    <set >
+      <if test="tid != null" >
+        TID = #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        CNAME = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        CTYPE = #{ctype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CID = #{cid,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="baseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_course
+    where CID = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_course
+    where CID = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.nuc.study.entity.Couser" >
+    insert into tb_course (CID, TID, CNAME, 
+      CTYPE)
+    values (#{cid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, 
+      #{ctype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.nuc.study.entity.Couser" >
+    insert into tb_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        CID,
+      </if>
+      <if test="tid != null" >
+        TID,
+      </if>
+      <if test="cname != null" >
+        CNAME,
+      </if>
+      <if test="ctype != null" >
+        CTYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        #{ctype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.study.entity.Couser" >
+    update tb_course
+    <set >
+      <if test="tid != null" >
+        TID = #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        CNAME = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        CTYPE = #{ctype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CID = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.study.entity.Couser" >
+    update tb_course
+    set TID = #{tid,jdbcType=INTEGER},
+      CNAME = #{cname,jdbcType=VARCHAR},
+      CTYPE = #{ctype,jdbcType=VARCHAR}
+    where CID = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

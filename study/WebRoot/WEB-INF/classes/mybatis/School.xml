@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.nuc.study.dao.interfaces.SchoolMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.study.entity.School" >
+  
+    <id column="SID" property="sid" jdbcType="INTEGER" />
+    <result column="SNAME" property="sname" jdbcType="VARCHAR" />
+    <result column="PTNUM" property="ptnum" jdbcType="INTEGER" />
+    <result column="PNUM" property="pnum" jdbcType="INTEGER" />
+    <result column="PDNUM" property="pdnum" jdbcType="INTEGER" />
+    <result column="CNUM" property="cnum" jdbcType="INTEGER" />
+    <result column="BNUM" property="bnum" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    SID, SNAME, PTNUM, PNUM, PDNUM, CNUM, BNUM
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_school
+    where SID = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_school
+    where SID = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.nuc.study.entity.School" >
+    insert into tb_school (SID, SNAME, PTNUM, 
+      PNUM, PDNUM, CNUM, 
+      BNUM)
+    values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{ptnum,jdbcType=INTEGER}, 
+      #{pnum,jdbcType=INTEGER}, #{pdnum,jdbcType=INTEGER}, #{cnum,jdbcType=INTEGER}, 
+      #{bnum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.nuc.study.entity.School" >
+    insert into tb_school
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        SID,
+      </if>
+      <if test="sname != null" >
+        SNAME,
+      </if>
+      <if test="ptnum != null" >
+        PTNUM,
+      </if>
+      <if test="pnum != null" >
+        PNUM,
+      </if>
+      <if test="pdnum != null" >
+        PDNUM,
+      </if>
+      <if test="cnum != null" >
+        CNUM,
+      </if>
+      <if test="bnum != null" >
+        BNUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="ptnum != null" >
+        #{ptnum,jdbcType=INTEGER},
+      </if>
+      <if test="pnum != null" >
+        #{pnum,jdbcType=INTEGER},
+      </if>
+      <if test="pdnum != null" >
+        #{pdnum,jdbcType=INTEGER},
+      </if>
+      <if test="cnum != null" >
+        #{cnum,jdbcType=INTEGER},
+      </if>
+      <if test="bnum != null" >
+        #{bnum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.study.entity.School" >
+    update tb_school
+    <set >
+      <if test="sname != null" >
+        SNAME = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="ptnum != null" >
+        PTNUM = #{ptnum,jdbcType=INTEGER},
+      </if>
+      <if test="pnum != null" >
+        PNUM = #{pnum,jdbcType=INTEGER},
+      </if>
+      <if test="pdnum != null" >
+        PDNUM = #{pdnum,jdbcType=INTEGER},
+      </if>
+      <if test="cnum != null" >
+        CNUM = #{cnum,jdbcType=INTEGER},
+      </if>
+      <if test="bnum != null" >
+        BNUM = #{bnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where SID = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.study.entity.School" >
+    update tb_school
+    set SNAME = #{sname,jdbcType=VARCHAR},
+      PTNUM = #{ptnum,jdbcType=INTEGER},
+      PNUM = #{pnum,jdbcType=INTEGER},
+      PDNUM = #{pdnum,jdbcType=INTEGER},
+      CNUM = #{cnum,jdbcType=INTEGER},
+      BNUM = #{bnum,jdbcType=INTEGER}
+    where SID = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

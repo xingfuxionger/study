@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="userService" class="cn.edu.nuc.study.service.impl.UserServiceImpl">
+		<property name="userMapper" ref="userMapper"/>
+	</bean>
+	<bean id="roleService" class="cn.edu.nuc.study.service.impl.RoleServiceImpl">
+		<property name="roleMapper" ref="roleMapper"/>
+	</bean>
+	<bean id="menuService" class="cn.edu.nuc.study.service.impl.MenuServiceImpl">
+		<property name="menuMapper" ref="menuMapper"/>
+	</bean>
+	<bean id="infoService" class="cn.edu.nuc.study.service.impl.InfoServiceImpl">
+		<property name="infoMapper" ref="infoMapper"/>
+	</bean>
+	<!--<bean id="couserService" class="cn.edu.nuc.study.service.impl.CouserServiceImpl">
+		<property name="couserMapper" ref="couserMapper"/>
+	</bean>
+	<bean id="schoolService" class="cn.edu.nuc.study.service.impl.SchoolServiceImpl">
+		<property name="schoolMapper" ref="schoolMapper"/>
+	</bean>
+	<bean id="teacherService" class="cn.edu.nuc.study.service.impl.TeacherServiceImpl">
+		<property name="teacherMapper" ref="teacherMapper"/>
+	</bean>
+--></beans>

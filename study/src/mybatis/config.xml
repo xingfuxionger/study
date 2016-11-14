@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="cn.edu.nuc.study.entity.User" alias="User"/>
+		<typeAlias type="cn.edu.nuc.study.entity.Page" alias="Page"/>
+		<typeAlias type="cn.edu.nuc.study.entity.Role" alias="Role"/>
+		<typeAlias type="cn.edu.nuc.study.entity.Menu" alias="Menu"/>
+		<typeAlias type="cn.edu.nuc.study.entity.Info" alias="Info"/>
+		<!--<typeAlias type="cn.edu.nuc.study.entity.Couser" alias="Couser"/>
+		<typeAlias type="cn.edu.nuc.study.entity.Teacher" alias="Teacher"/>
+		<typeAlias type="cn.edu.nuc.study.entity.School" alias="School"/>
+	--></typeAliases>
+	
+	<plugins>
+		<plugin interceptor="cn.edu.nuc.study.plugin.PagePlugin">
+			<property name="dialect" value="mysql"/>
+			<property name="pageSqlId" value=".*listPage.*"/>
+		</plugin>
+	</plugins>
+	
+	<mappers>
+		<mapper resource="mybatis/User.xml"/>
+		<mapper resource="mybatis/Role.xml"/>
+		<mapper resource="mybatis/Menu.xml"/>
+		<mapper resource="mybatis/Info.xml"/>
+		<!--<mapper resource="mybatis/Couser.xml"/>
+		<mapper resource="mybatis/Teacher.xml"/>
+		<mapper resource="mybatis/School.xml"/>
+	--></mappers>
+	
+</configuration>
